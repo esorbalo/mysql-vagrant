@@ -11,6 +11,10 @@ User: `root`
 Password: `password`  
 Port: `3306`
 
+In Mac:
+```
+mysql -h 10.19.17.12 -uroot -ppassword
+```
 Ensure that MySQL is not running on your machine before starting up, as there will be a port conflict. Vagrant will soon tell you :)
 
 ---

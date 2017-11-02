@@ -4,11 +4,24 @@
 
 # if we need any dependencies, install them here
 
-#sudo yum -y update
-sudo yum -y install mysql-server
+# Add community mysql to repository list
+
+sudo yum -y install wget
+
+# https://opensourcedbms.com/dbms/how-to-install-mysql-5-5-on-cent-os-6-3-linux-redhat-el-6/
+wget -O MySQL-server-5.5.30-1.el6.x86_64.rpm http://www.mysql.com/get/Downloads/MySQL-5.5/MySQL-server-5.5.30-1.el6.x86_64.rpm/from/http://cdn.mysql.com/
+wget -O MySQL-client-5.5.30-1.el6.x86_64.rpm http://www.mysql.com/get/Downloads/MySQL-5.5/MySQL-client-5.5.30-1.el6.x86_64.rpm/from/http://cdn.mysql.com/
+wget -O MySQL-shared-5.5.30-1.el6.x86_64.rpm http://www.mysql.com/get/Downloads/MySQL-5.5/MySQL-shared-5.5.30-1.el6.x86_64.rpm/from/http://cdn.mysql.com/
+
+sudo yum -y install perl
+
+sudo rpm -ivh MySQL-shared-5.5.30-1.el6.x86_64.rpm
+sudo rpm -ivh MySQL-client-5.5.30-1.el6.x86_64.rpm
+sudo rpm -ivh --force MySQL-server-5.5.30-1.el6.x86_64.rpm
 
 # restart mysql
-sudo service mysqld restart
+# sudo service mysqld restart
+sudo service mysql start
 
 ### secure the mysql installation
 
@@ -29,7 +42,7 @@ mysql -u root -ppassword -e "DROP DATABASE test;"
 mysql -u root -ppassword -e "FLUSH PRIVILEGES;"
 
 # restart
-sudo service mysqld restart
+# sudo service mysqld restart
 
 # set to autostart
-sudo chkconfig mysqld on
+# sudo chkconfig mysqld on
